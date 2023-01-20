@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const FeedbackOptions = ({ options, props }) => {
-  console.log(props);
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return options.map(option => {
     return (
       <Button key={option}>
-        <button name={option} type="button" onClick={() => this.handleClick}>
+        <button
+          type="button"
+          name={option}
+          onClick={event => console.log(event.target.name)}
+        >
           {option}
         </button>
       </Button>

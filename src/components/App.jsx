@@ -18,10 +18,11 @@ export class StatisticsExpresso extends Component {
   };
 
   handleClick = event => {
-    const keyBtn = event.target.textContent;
-    this.setState(prevState => ({
-      [keyBtn]: prevState[keyBtn] + 1,
-    }));
+    console.log(event.target);
+    // const keyBtn = event.target.textContent;
+    // this.setState(prevState => ({
+    //   [keyBtn]: prevState[keyBtn] + 1,
+    // }));
   };
 
   render() {
@@ -30,7 +31,7 @@ export class StatisticsExpresso extends Component {
         <h2>Please leave feedback</h2>
         <FeedbackOptions
           options={['good', 'neutral', 'bad']}
-          onLeaveFeedback={this.state}
+          onLeaveFeedback={this.event}
         />
 
         <h3>Statistics</h3>
