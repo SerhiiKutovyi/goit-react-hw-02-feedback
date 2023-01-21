@@ -11,9 +11,18 @@ export class App extends Component {
   };
 
   countTotalFeedback = () => {
-    const total = Object.values(this.state).reduce((acc, total) => {
-      return acc + total;
-    }, 0);
+    const total = Object.values(this.state).reduce(
+      (acc, total) => acc + total,
+      0
+    );
+    return total;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good, neutral, bad } = this.state;
+    const positivePercentage = (good * 100) / (good + neutral + bad);
+
+    return positivePercentage;
   };
 
   onHandleClick = event => {
@@ -22,26 +31,25 @@ export class App extends Component {
     }));
   };
 
-  countPositiveFeedbackPercentage = () => {};
-
   render() {
     const option = Object.keys(this.state);
     const { good, neutral, bad } = this.state;
 
     return (
       <Title>
-        <h2>Please leave feedback</h2>
-        <FeedbackOptions
-          options={option}
-          onLeaveFeedback={this.onHandleClick}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={option}
+            onLeaveFeedback={this.onHandleClick}
+          />
+        </Section>
         <h3>Statistics</h3>
         <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          total={this.countTotalFeedback}
-          // positiveP55ercentage={this.state}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
         />
       </Title>
     );

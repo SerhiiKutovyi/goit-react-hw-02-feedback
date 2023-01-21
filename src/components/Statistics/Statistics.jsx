@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
-export const Statistics = ({ good, neutral, bad }, total) => {
-  console.log(total);
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) => {
   return (
     <Counter className="counter">
       <span className="counterGood">Good: {good}</span>
       <span className="counterNeutral">Neutral: {neutral}</span>
       <span className="counterBad">Bad: {bad}</span>
-      {/* <span className="counterTotal">Total: {total}</span> */}
-      <span className="counterPositive">Positive feedback: 0</span>
+      <span className="counterTotal">Total: {total}</span>
+      <span className="counterPositive">
+        Positive feedback: {positivePercentage} %
+      </span>
     </Counter>
   );
 };
