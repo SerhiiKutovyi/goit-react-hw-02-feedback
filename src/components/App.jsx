@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
+import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -19,10 +20,9 @@ export class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = this.state;
-    const positivePercentage = (good * 100) / (good + neutral + bad);
-
-    return positivePercentage;
+    const positivePercentage =
+      (this.state.good * 100) / this.countTotalFeedback();
+    return Math.round(positivePercentage);
   };
 
   onHandleClick = event => {
@@ -36,46 +36,24 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <Title>
+      <>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={option}
             onLeaveFeedback={this.onHandleClick}
           />
         </Section>
-        <h3>Statistics</h3>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
-      </Title>
+        <Section titleStat="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
+        {/* <Notification message="There is no feedback" /> */}
+      </>
     );
   }
 }
-
-const Title = styled.div`
-  h2 {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    color: green;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
-  }
-
-  h3 {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    color: #5418e0;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
-  }
-`;
