@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  return options.map(option => {
+  return options.map(ele => {
     return (
-      <Button key={option}>
-        <button
-          type="button"
-          name={option}
-          onClick={event => console.log(event.target.name)}
-        >
-          {option}
+      <Button key={ele}>
+        <button type="button" name={ele} onClick={() => onLeaveFeedback(ele)}>
+          {ele}
         </button>
       </Button>
     );
@@ -17,11 +13,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 const Button = styled.div`
-  display: flex;
-
-  gap: 20px;
-  background: transparent;
-  border-radius: 3px;
+  border-radius: 4px;
 
   margin-top: 40px;
   margin-bottom: 40px;
@@ -30,6 +22,7 @@ const Button = styled.div`
   button {
     padding: 10px 30px;
     border-radius: 4px;
-    background-color: coral;
+    color: white;
+    background-color: #3437e7;
   }
 `;
