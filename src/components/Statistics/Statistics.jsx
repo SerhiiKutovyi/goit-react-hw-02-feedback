@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { Counter } from './Statistics.styled';
 
 export const Statistics = ({
   good,
@@ -22,9 +23,10 @@ export const Statistics = ({
   );
 };
 
-const Counter = styled.div`
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-`;
+Statistics.propType = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};

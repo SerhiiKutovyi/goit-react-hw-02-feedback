@@ -1,28 +1,28 @@
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { Button } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  return options.map(ele => {
-    return (
-      <Button key={ele}>
-        <button type="button" name={ele} onClick={() => onLeaveFeedback(ele)}>
-          {ele}
-        </button>
-      </Button>
-    );
-  });
+  return (
+    <Button>
+      <>
+        {options.map(ele => {
+          return (
+            <button
+              key={ele}
+              type="button"
+              name={ele}
+              onClick={() => onLeaveFeedback(ele)}
+            >
+              {ele}
+            </button>
+          );
+        })}
+      </>
+    </Button>
+  );
 };
 
-const Button = styled.div`
-  border-radius: 4px;
-
-  margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: 20px;
-
-  button {
-    padding: 10px 30px;
-    border-radius: 4px;
-    color: white;
-    background-color: #3437e7;
-  }
-`;
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
